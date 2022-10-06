@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+    <title>Frankenplayer</title>
+  </head>
+  <body>
+    <div class="main">
+      <video id="main-video" class="video-js"></video>
+    </div>
+  </body>
+  <script>
+    window.onload = async () => {
+      console.log(window);
+      const Player = require('./MediaPlayer');
+      videoPlayer = new Player('#main-video', {'autoplay': true, 'loop': true}, "./videos/TESTCARD_60p_1920x1080_h264.mp4");
+      setInterval(() => {
+        let currentTime = videoPlayer.getCurrentTime();
+        console.log(currentTime);
+        console.log(window.mediaAPI);
+        window.mediaAPI.setCurrentTime(currentTime);
+      }, 100);
+    }
+
+  </script>
+</html> 
